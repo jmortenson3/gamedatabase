@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+import mongoose from 'mongoose';
 const PORT = 3001;
 
 // get specific game
