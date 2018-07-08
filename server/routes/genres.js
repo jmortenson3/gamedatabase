@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {
-  addGenre,
+  createGenre,
   getGenre,
   getGenres,
   updateGenre,
@@ -11,7 +11,7 @@ const {
 // prefix /api/genres
 router.route('/')
   .get(getGenres)
-  .post(addGenre);
+  .post(createGenre);
 
 router.route('/:id')
   .get(getGenre)

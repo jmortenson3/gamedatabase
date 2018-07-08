@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {
-  addGame,
+  createGame,
   getGame,
   getGames,
   updateGame,
@@ -16,6 +16,6 @@ router.route('/:id')
 
 router.route('/')
   .get(getGames)
-  .post(addGame);
+  .post(createGame);
 
 module.exports = router;

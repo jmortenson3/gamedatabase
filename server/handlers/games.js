@@ -1,12 +1,23 @@
 const db = require('../models');
-//required in db to query mongo
-
 // handlers define functionality at each endpoint
 
 // POST /api/games
-exports.addGame = async function(req, res, next) {
+exports.createGame = async function(req, res, next) {
   try {
-    return res.status(200).send('created a new game, but not really.');
+    console.log(req.body);
+
+    if (!req.body.title) {
+      return res.status(400).send('title can\'t be blank');
+    }
+
+    let game = await db.Game.create({
+      title: req.body.title,
+      publisher: req.body.publisher,
+      developer: req.body.developer,
+      releaseDate: req.body.releaseDate,
+      genre: req.body.genre
+    });
+    return res.status(200).send(`Created game ${req.body.title}`);
   }
   catch (err) {
     return next(err);
@@ -16,7 +27,8 @@ exports.addGame = async function(req, res, next) {
 // GET /api/games/:id
 exports.getGame = async function(req, res, next) {
   try {
-    return res.status(200).send('returned a game, but not really.');
+    let game = await db.Game.find(req.params.id);
+    return res.status(200).json(game);
   }
   catch (err) {
     return next(err);
@@ -26,7 +38,8 @@ exports.getGame = async function(req, res, next) {
 // GET /api/games/search?
 exports.getGames = async function(req, res, next) {
   try {
-    return res.status(200).send('returned many games, but not really.');
+    let games = await db.Game.find();
+    return res.status(200).json(games);
   }
   catch (err) {
     return next(err);
@@ -46,7 +59,9 @@ exports.updateGame = async function(req, res, next) {
 // DELETE /api/games/:id
 exports.deleteGame = async function(req, res, next) {
   try {
-    return res.status(200).send('deleted a game, but not really.');
+    let game = await db.Game.findById(req.params.id);
+    await game.remove();
+    return res.status(200).json(game);
   }
   catch (err) {
     return next(err);

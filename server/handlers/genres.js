@@ -2,7 +2,7 @@ const db = require('../models');
 //required in db to query mongo
 
 // POST /api/genres
-exports.addGenre = async function(req, res, next) {
+exports.createGenre = async function(req, res, next) {
   try {
     return res.status(200).send('updated a genre, but not really');
   }
