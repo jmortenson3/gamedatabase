@@ -4,12 +4,9 @@ const db = require('../models');
 // POST /api/games
 exports.createGame = async function(req, res, next) {
   try {
-    console.log(req.body);
-
     if (!req.body.title) {
       return res.status(400).send('title can\'t be blank');
     }
-
     let game = await db.Game.create({
       title: req.body.title,
       publisher: req.body.publisher,
@@ -38,7 +35,9 @@ exports.getGame = async function(req, res, next) {
 // GET /api/games/search?
 exports.getGames = async function(req, res, next) {
   try {
+    console.log(`${Date.now()} before await`);
     let games = await db.Game.find();
+    console.log(`${Date.now()} after await`);
     return res.status(200).json(games);
   }
   catch (err) {

@@ -4,7 +4,6 @@ const {
   createGenre,
   getGenre,
   getGenres,
-  updateGenre,
   deleteGenre
 } = require('../handlers/genres');
 
@@ -15,7 +14,6 @@ router.route('/')
 
 router.route('/:id')
   .get(getGenre)
-  .delete(deleteGenre)
-  .put(updateGenre);
+  .delete(deleteGenre);
 
 module.exports = router;

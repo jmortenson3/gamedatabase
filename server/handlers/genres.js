@@ -4,17 +4,13 @@ const db = require('../models');
 // POST /api/genres
 exports.createGenre = async function(req, res, next) {
   try {
-    return res.status(200).send('updated a genre, but not really');
-  }
-  catch (err) {
-    return next(err);
-  }
-};
-
-// GET /api/genres
-exports.getGenres = async function(req, res, next) {
-  try {
-    return res.status(200).send('returned many genres, but not really');
+    if (!req.body.genre) {
+      return res.status(400).send('genre can\'t be blank');
+    }
+    let genre = await db.Genre.create({
+      genre: req.body.genre
+    });
+    return res.status(200).send(`Created genre ${req.body.genre}`);
   }
   catch (err) {
     return next(err);
@@ -24,17 +20,21 @@ exports.getGenres = async function(req, res, next) {
 // GET /api/genre/:id
 exports.getGenre = async function(req, res, next) {
   try {
-    return res.status(200).send('returned a genre, but not really');
+    let genre = await db.Genre.findById(req.params.id);
+    return res.status(200).json(genre);
   }
   catch (err) {
     return next(err);
   }
 };
 
-// PUT /api/genre/:id
-exports.updateGenre = async function(req, res, next) {
+// GET /api/genre
+exports.getGenres = async function(req, res, next) {
   try {
-    return res.status(200).send('updated a genre, but not really');
+    console.log(`${Date.now()} before await`);
+    let genres = await db.Genre.find();
+    console.log(`${Date.now()} after await`);
+    return res.status(200).json(genres);
   }
   catch (err) {
     return next(err);
@@ -44,7 +44,9 @@ exports.updateGenre = async function(req, res, next) {
 // DELETE /api/genre/:id
 exports.deleteGenre = async function(req, res, next) {
   try {
-    return res.status(200).send('deleted a genre, but not really');
+    let genre = await db.Genre.findById(req.params.id);
+    await genre.remove();
+    return res.status(200).json(genre);
   }
   catch (err) {
     return next(err);

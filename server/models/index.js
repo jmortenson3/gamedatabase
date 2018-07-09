@@ -10,4 +10,5 @@ mongoose.connect(`mongodb://${CONFIG.user}:${CONFIG.pass}@ds229771.mlab.com:2977
 });
 
 module.exports.Game = require('./game');
+module.exports.Genre = require('./genre');
 
