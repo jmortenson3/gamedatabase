@@ -33,12 +33,11 @@ exports.getGame = async function(req, res, next) {
 };
 
 // GET /api/games/search?
-exports.getGames = async function(req, res, next) {
+exports.getGamesByCriteria = async function(req, res, next) {
   try {
-    console.log(`${Date.now()} before await`);
-    let games = await db.Game.find();
-    console.log(`${Date.now()} after await`);
-    return res.status(200).json(games);
+    console.log('am i here?');
+    //let games = await db.Game.find({ req})
+    return res.status(200).send( req.query );
   }
   catch (err) {
     return next(err);

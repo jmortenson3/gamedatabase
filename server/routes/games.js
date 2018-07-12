@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   createGame,
   getGame,
-  getGames,
+  getGamesByCriteria,
   updateGame,
   deleteGame
 } = require('../handlers/games');
@@ -15,7 +15,7 @@ router.route('/:id')
   .put(updateGame);
 
 router.route('/')
-  .get(getGames)
+  .get(getGamesByCriteria)
   .post(createGame);
 
 module.exports = router;
