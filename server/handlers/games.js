@@ -35,9 +35,9 @@ exports.getGame = async function(req, res, next) {
 // GET /api/games/search?
 exports.getGamesByCriteria = async function(req, res, next) {
   try {
-    console.log('am i here?');
     //let games = await db.Game.find({ req})
-    return res.status(200).send( req.query );
+    let games = await db.Game.apiQuery(req.query);
+    return res.status(200).send( games );
   }
   catch (err) {
     return next(err);
