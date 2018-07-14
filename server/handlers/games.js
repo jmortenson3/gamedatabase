@@ -24,7 +24,7 @@ exports.createGame = async function(req, res, next) {
 // GET /api/games/:id
 exports.getGame = async function(req, res, next) {
   try {
-    let game = await db.Game.find(req.params.id);
+    let game = await db.Game.findById(req.params.id);
     return res.status(200).json(game);
   }
   catch (err) {
@@ -32,10 +32,9 @@ exports.getGame = async function(req, res, next) {
   }
 };
 
-// GET /api/games/search?
+// GET /api/games/search?key=val
 exports.getGamesByCriteria = async function(req, res, next) {
   try {
-    //let games = await db.Game.find({ req})
     let games = await db.Game.apiQuery(req.query);
     return res.status(200).send( games );
   }
@@ -47,7 +46,8 @@ exports.getGamesByCriteria = async function(req, res, next) {
 // PUT /api/games/:id
 exports.updateGame = async function(req, res, next) {
   try {
-    return res.status(200).send('updated a game, but not really.');
+    let game = await db.Game.findByIdAndUpdate(req.params.id, req.body);
+    return res.status(200).send(game);
   }
   catch (err) {
     return next(err);

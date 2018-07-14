@@ -31,9 +31,7 @@ exports.getGenre = async function(req, res, next) {
 // GET /api/genre
 exports.getGenres = async function(req, res, next) {
   try {
-    console.log(`${Date.now()} before await`);
     let genres = await db.Genre.find();
-    console.log(`${Date.now()} after await`);
     return res.status(200).json(genres);
   }
   catch (err) {
