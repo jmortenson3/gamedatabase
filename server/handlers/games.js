@@ -17,18 +17,31 @@ exports.createGame = async function(req, res, next) {
     return res.status(200).send(`Created game ${req.body.title}`);
   }
   catch (err) {
-    return next(err);
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not create game.`
+    })
   }
 };
 
 // GET /api/games/:id
 exports.getGame = async function(req, res, next) {
   try {
-    let game = await db.Game.findById(req.params.id);
-    return res.status(200).json(game);
+    if (req.params.id) {
+      let game = await db.Game.findById(req.params.id);
+      return res.status(200).json(game);
+    }
+    else {
+      return res.status(400).json({
+        error: `Could not get game, no game specified.`
+      });
+    }
   }
   catch (err) {
-    return next(err);
+    console.error(`ERROR: ${err.message}`);
+    return res.status(404).json({
+      error: `Could not find game with id ${req.params.id}`
+    });
   }
 };
 
@@ -39,18 +52,31 @@ exports.getGamesByCriteria = async function(req, res, next) {
     return res.status(200).send( games );
   }
   catch (err) {
-    return next(err);
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not find games.`
+    });
   }
 };
 
 // PUT /api/games/:id
 exports.updateGame = async function(req, res, next) {
   try {
-    let game = await db.Game.findByIdAndUpdate(req.params.id, req.body);
-    return res.status(200).send(game);
+    if (req.params.id) {
+      let game = await db.Game.findByIdAndUpdate(req.params.id, req.body);
+      return res.status(200).send(game);
+    }
+    else {
+      return res.status(400).json({
+        error: `Could not update game.  No game specified.`
+      });
+    }
   }
   catch (err) {
-    return next(err);
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not update game.`
+    });
   }
 };
 
@@ -62,7 +88,10 @@ exports.deleteGame = async function(req, res, next) {
     return res.status(200).json(game);
   }
   catch (err) {
-    return next(err);
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `could not delete game.`
+    });
   }
 };
 

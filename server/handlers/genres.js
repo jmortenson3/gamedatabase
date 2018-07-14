@@ -20,8 +20,15 @@ exports.createGenre = async function(req, res, next) {
 // GET /api/genre/:id
 exports.getGenre = async function(req, res, next) {
   try {
-    let genre = await db.Genre.findById(req.params.id);
-    return res.status(200).json(genre);
+    if (req.params.id) {
+      let genre = await db.Genre.findById(req.params.id);
+      return res.status(200).json(genre);
+    }
+    else {
+      return res.status(400).json({
+        error: `Could not get genre. No genre specified.`
+      });
+    }
   }
   catch (err) {
     return next(err);
@@ -42,9 +49,16 @@ exports.getGenres = async function(req, res, next) {
 // DELETE /api/genre/:id
 exports.deleteGenre = async function(req, res, next) {
   try {
-    let genre = await db.Genre.findById(req.params.id);
-    await genre.remove();
-    return res.status(200).json(genre);
+    if (req.params.id) {
+      let genre = await db.Genre.findById(req.params.id);
+      await genre.remove();
+      return res.status(200).json(genre);
+    }
+    else {
+      return res.status(400).json({
+        error: `Could not delete genre, no genre specified.`
+      });
+    }
   }
   catch (err) {
     return next(err);
