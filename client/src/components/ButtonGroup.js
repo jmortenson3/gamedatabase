@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
+// WILL NOT USE
 class ButtonGroup extends Component {
   constructor(props) {
     super(props);

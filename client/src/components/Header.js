@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import SearchForm from './SearchForm';
+import { BrowserRouter, Switch, Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
-      <div className="jumbotron header">
-        <h1>GameDB</h1>
-        <SearchForm className="header-search"/>
-      </div>
+      <nav className="navbar border-bottom">
+        <Link to="/" className="navbar-brand">GameDB</Link>
+        <form className="form-inline">
+          <input className="form-control" type="search" placeholder="battle toads" aria-label="Search" />
+          <button className="btn" type="submit">Search</button>
+        </form>
+        <ul className="navbar-nav">
+          <Link to="/games/add">Add a game</Link>
+        </ul>
+      </nav>
     );
   }
 }
