@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from './Button';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class SearchForm extends Component {
     return (
       <form>
         <input className={ className } type="text" placeholder="battle toads"/>
-        <button type="submit">Find your game</button>
+        <Button btnText="Find your game" classNames={["btn-primary"]} />
       </form>
     )
   }
