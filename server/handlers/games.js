@@ -5,6 +5,7 @@ const db = require('../models');
 exports.createGame = async function(req, res, next) {
   try {
     if (!req.body.title) {
+      console.log(req);
       return res.status(400).send('title can\'t be blank');
     }
     let game = await db.Game.create({

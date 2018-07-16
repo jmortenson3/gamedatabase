@@ -2,9 +2,9 @@ import React from 'react';
 
 const Button = (props) => {
   const { btnText } = props;
-  const classNames = [ 'btn', ...props.classNames ].join(' ');
+  const classNames = props.classNames ? [ 'btn', ...props.classNames ].join(' ') : [ 'btn' ];
   return (
-    <button type="button" className={ classNames }>
+    <button type="submit" className={ classNames }>
       { btnText }
     </button>
   );
