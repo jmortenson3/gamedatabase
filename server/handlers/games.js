@@ -3,9 +3,10 @@ const db = require('../models');
 
 // POST /api/games
 exports.createGame = async function(req, res, next) {
+  console.log(req.body);
   try {
     if (!req.body.title) {
-      console.log(req);
+      // console.log(JSON.stringify(req.body));
       return res.status(400).send('title can\'t be blank');
     }
     let game = await db.Game.create({
@@ -15,7 +16,8 @@ exports.createGame = async function(req, res, next) {
       releaseDate: req.body.releaseDate,
       genre: req.body.genre
     });
-    return res.status(200).send(`Created game ${req.body.title}`);
+    console.log(`Created game with id ${game.id}`);
+    return res.status(200).json(game);
   }
   catch (err) {
     console.error(`ERROR: ${err.message}`);

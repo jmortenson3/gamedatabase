@@ -7,7 +7,7 @@ const gameRoutes = require('./routes/games');
 const genreRoutes = require('./routes/genres');
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 app.use('/api/games', gameRoutes);
 app.use('/api/genres', genreRoutes);

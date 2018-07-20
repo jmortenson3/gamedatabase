@@ -1,16 +1,18 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Homepage from '../components/Homepage';
+import HomePage from '../components/HomePage';
 import AddGameForm from '../components/AddGameForm';
 import Header from '../components/Header';
+import GamePage from '../components/GamePage';
 
 const Main = (props) => {
   return (
     <div className="container">
       <Header />
       <Switch>
-        <Route exact path="/" render={ props => <Homepage {...props} /> } />
-        <Route exact path="/games/add" render={ () => <AddGameForm /> } />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/games/add" component={AddGameForm} />
+        <Route path="/games/:id" component={GamePage} />
       </Switch>
     </div>
   );
