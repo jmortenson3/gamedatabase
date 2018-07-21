@@ -12,18 +12,18 @@ class AddGameForm extends Component {
     };
   }
 
+  handleListChange = (e) => {
+    e.preventDefault();
+    this.setState({
+      body: { ...this.state.body, [e.target.dataset.statename]: e.target.value.split(',') }
+    });
+  }
+
   handleInputChange = (e) => {
     e.preventDefault();
-    console.log("hello there");
-    if (e.target.dataset.statename === "genre") {
-      this.setState({
-        body: { ...this.state.body, [e.target.dataset.statename]: e.target.value.split(',') }
-      });
-    } else {
-      this.setState({
-        body: { ...this.state.body, [e.target.dataset.statename]: e.target.value }
-      });
-    }
+    this.setState({
+      body: { ...this.state.body, [e.target.dataset.statename]: e.target.value }
+    });
   }
 
   handleFormSubmit = (e) => {
@@ -74,6 +74,19 @@ class AddGameForm extends Component {
               inputType="text"
               placeholderText="Enter genres"
               stateName="genre"
+              changeHandler={ this.handleListChange } />
+            <FormInput
+              labelText="Tags"
+              inputId="inputTag"
+              inputType="text"
+              placeholderText="Enter tags"
+              stateName="tag"
+              changeHandler={ this.handleListChange } />
+            <FormInput
+              labelText="Release Date"
+              inputId="inputReleaseDate"
+              inputType="date"
+              stateName="releaseDate"
               changeHandler={ this.handleInputChange } />
             <Button btnText="Add game!" />
           </div>

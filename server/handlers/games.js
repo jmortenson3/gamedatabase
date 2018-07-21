@@ -14,7 +14,9 @@ exports.createGame = async function(req, res, next) {
       publisher: req.body.publisher,
       developer: req.body.developer,
       releaseDate: req.body.releaseDate,
-      genre: req.body.genre
+      genre: req.body.genre,
+      rating: req.body.rating,
+      tag: req.body.tag
     });
     console.log(`Created game with id ${game.id}`);
     return res.status(200).json(game);

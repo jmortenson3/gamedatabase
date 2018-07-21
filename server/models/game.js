@@ -9,6 +9,7 @@ const gameSchema = new Schema({
   releaseDate: Date,
   genre: Array,
   rating: Number,
+  tag: Array,
   lastChanged: { type: Date, default: Date.now() }
 });
 
