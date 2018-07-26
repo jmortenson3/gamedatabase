@@ -4,6 +4,7 @@ const db = require('../models');
 // POST /api/genres
 exports.createGenre = async function(req, res, next) {
   try {
+    console.log(req.body);
     if (!req.body.genre) {
       return res.status(400).send('genre can\'t be blank');
     }
@@ -11,9 +12,11 @@ exports.createGenre = async function(req, res, next) {
       genre: req.body.genre
     });
     return res.status(200).send(`Created genre ${req.body.genre}`);
-  }
-  catch (err) {
-    return next(err);
+  } catch (err) {
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not create genre.`
+    })
   }
 };
 
@@ -23,15 +26,16 @@ exports.getGenre = async function(req, res, next) {
     if (req.params.id) {
       let genre = await db.Genre.findById(req.params.id);
       return res.status(200).json(genre);
-    }
-    else {
+    } else {
       return res.status(400).json({
         error: `Could not get genre. No genre specified.`
       });
     }
-  }
-  catch (err) {
-    return next(err);
+  } catch (err) {
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not get genre.`
+    })
   }
 };
 
@@ -40,9 +44,11 @@ exports.getGenres = async function(req, res, next) {
   try {
     let genres = await db.Genre.find();
     return res.status(200).json(genres);
-  }
-  catch (err) {
-    return next(err);
+  } catch (err) {
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not get genres.`
+    })
   }
 };
 
@@ -53,14 +59,15 @@ exports.deleteGenre = async function(req, res, next) {
       let genre = await db.Genre.findById(req.params.id);
       await genre.remove();
       return res.status(200).json(genre);
-    }
-    else {
+    } else {
       return res.status(400).json({
         error: `Could not delete genre, no genre specified.`
       });
     }
-  }
-  catch (err) {
-    return next(err);
+  } catch (err) {
+    console.error(`ERROR: ${err.message}`);
+    return res.status(400).json({
+      error: `Could not delete genre.`
+    })
   }
 };
