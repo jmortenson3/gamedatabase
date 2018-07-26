@@ -53,6 +53,7 @@ class AddGameForm extends Component {
               inputType="text"
               placeholderText="Enter game title"
               stateName="title"
+              autoComplete="off"
               changeHandler={ this.handleInputChange } />
             <FormInput
               labelText="Publisher"
@@ -60,6 +61,7 @@ class AddGameForm extends Component {
               inputType="text"
               placeholderText="Enter publisher"
               stateName="publisher"
+              autoComplete="off"
               changeHandler={ this.handleInputChange } />
             <FormInput
               labelText="Developer"
@@ -67,6 +69,7 @@ class AddGameForm extends Component {
               inputType="text"
               placeholderText="Enter developer"
               stateName="developer"
+              autoComplete="off"
               changeHandler={ this.handleInputChange } />
             <FormInput
               labelText="Genres"
@@ -74,6 +77,7 @@ class AddGameForm extends Component {
               inputType="text"
               placeholderText="Enter genres"
               stateName="genre"
+              autoComplete="off"
               changeHandler={ this.handleListChange } />
             <FormInput
               labelText="Tags"
@@ -81,12 +85,14 @@ class AddGameForm extends Component {
               inputType="text"
               placeholderText="Enter tags"
               stateName="tag"
+              autoComplete="off"
               changeHandler={ this.handleListChange } />
             <FormInput
               labelText="Release Date"
               inputId="inputReleaseDate"
               inputType="date"
               stateName="releaseDate"
+              autoComplete="off"
               changeHandler={ this.handleInputChange } />
             <Button btnText="Add game!" />
           </div>

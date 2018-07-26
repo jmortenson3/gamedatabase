@@ -6,6 +6,7 @@ const FormInput = (props) => {
           inputType,
           placeholderText,
           subtext,
+          autoComplete,
           changeHandler,
           stateName
   } = props;
@@ -20,6 +21,7 @@ const FormInput = (props) => {
         id={ inputId }
         className="form-control"
         placeholder={ placeholderText }
+        autoComplete={ autoComplete }
         onChange={ (e) => changeHandler(e) }
         data-statename={ stateName } />
       { subtext &&
