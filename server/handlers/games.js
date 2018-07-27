@@ -51,7 +51,7 @@ exports.getGame = async function(req, res, next) {
 exports.getGamesByCriteria = async function(req, res, next) {
   try {
     let games = await db.Game.apiQuery(req.query);
-    return res.status(200).send( games );
+    return res.status(200).send(games);
   } catch (err) {
     console.error(`ERROR: ${err.message}`);
     return res.status(400).json({

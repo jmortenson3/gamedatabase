@@ -18,4 +18,5 @@ mongoose.connect(uri, options)
 
 module.exports.Game = require('./game');
 module.exports.Genre = require('./genre');
+module.exports.Tag = require('./tag');
 
