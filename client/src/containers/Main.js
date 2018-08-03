@@ -4,18 +4,29 @@ import HomePage from '../components/HomePage';
 import AddGameForm from '../components/AddGameForm';
 import Header from '../components/Header';
 import GamePage from '../components/GamePage';
+import SearchResults from '../components/SearchResults';
 
-const Main = (props) => {
-  return (
-    <div className="container">
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/games/add" component={AddGameForm} />
-        <Route path="/games/:id" component={GamePage} />
-      </Switch>
-    </div>
-  );
-};
+class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      games: []
+    }
+  }
+
+  render () {
+    return (
+      <div className="container">
+        <Header handleSubmit={} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/games/add" component={AddGameForm} />
+          <Route path="/games/:id" component={GamePage} />
+          <Route path="/search?" component={SearchResults} />
+        </Switch>
+      </div>
+    );
+  }
+}
 
 export default Main;

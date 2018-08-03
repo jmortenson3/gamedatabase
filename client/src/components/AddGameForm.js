@@ -45,7 +45,7 @@ class AddGameForm extends Component {
       <div className="container">
         <h3>Add a game.</h3>
         <small>Contribute to GameDB by adding a game that we don't have yet.</small>
-        <form onSubmit={ e => this.handleFormSubmit(e) } >
+        <form onSubmit={ e => this.handleFormSubmit(e) }>
           <div className="form-group">
             <FormInput
               labelText="Game Title"

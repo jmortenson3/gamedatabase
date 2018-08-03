@@ -10,8 +10,10 @@ const {
 
 //prefix /api/games
 router.route('/')
-.get(getGamesByCriteria)
-.post(createGame);
+  .post(createGame);
+
+router.route('/search')
+  .get(getGamesByCriteria);
 
 router.route('/:id')
   .get(getGame)
